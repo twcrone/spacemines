@@ -6,6 +6,7 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.Optional;
 
 @RestController
@@ -19,10 +20,18 @@ public class DemoController {
         return "Hello World";
     }
 
-    @GetMapping(value = "/player/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
-    ResponseEntity<Player> getPlayer(@PathVariable Long id) {
+    @GetMapping(value = "/players", produces = MediaType.APPLICATION_JSON_VALUE)
+    ResponseEntity<Iterable<Player>> getPlayers() {
 
-        Optional<Player> optionalPlayer = repository.findById(id);
+        Iterable<Player> players = repository.findAll();
+
+        return new ResponseEntity<>(players, HttpStatus.OK);
+    }
+
+    @GetMapping(value = "/player/{uuid}", produces = MediaType.APPLICATION_JSON_VALUE)
+    ResponseEntity<Player> getPlayer(@PathVariable String uuid) {
+
+        Optional<Player> optionalPlayer = repository.findById(uuid);
 
         return optionalPlayer.map(p -> new ResponseEntity<>(p, HttpStatus.OK))
                 .orElse(new ResponseEntity<>(HttpStatus.NOT_FOUND));
