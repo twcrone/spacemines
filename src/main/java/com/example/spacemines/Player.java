@@ -17,6 +17,12 @@ public class Player {
     private String email;
     private String username;
 
+    private Player() {}
+
+    public Player(String email, String username) {
+        this.email = email;
+        this.username = username;
+    }
 
     public String getUuid() {
         return uuid;
