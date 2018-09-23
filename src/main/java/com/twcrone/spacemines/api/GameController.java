@@ -45,8 +45,8 @@ public class GameController {
         game.setUuid(entity.getUuid());
 
         game.setSpheres(entity.getSpheres().stream()
-                .map(s -> new GameSphere(s.getX(), s.getY(), s.getZ(), s.getRadiation()))
-                .collect(Collectors.toList()));
+                    .map(s -> new GameSphere(s.getX(), s.getY(), s.getZ(), s.getRadiation()))
+                    .collect(Collectors.toList()));
 
         return game;
     }

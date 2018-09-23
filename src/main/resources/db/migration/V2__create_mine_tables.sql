@@ -12,3 +12,6 @@ CREATE TABLE mine (
   z INT,
   mine_field_uuid VARCHAR(255) REFERENCES mine_field(uuid)
 );
+
+INSERT INTO mine_field VALUES ('TEST', 3, 3, 3);
+INSERT INTO mine VALUES ('MINE', 1, 1, 1, 'TEST');

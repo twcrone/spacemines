@@ -4,6 +4,7 @@ import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 @Entity
@@ -20,7 +21,7 @@ public class MineField {
     private final int yLength;
     private final int zLength;
 
-    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL, orphanRemoval = true)
     @JoinColumn(name = "mine_field_uuid")
     private final List<Mine> mines = new ArrayList<>();
 
@@ -56,4 +57,7 @@ public class MineField {
         mines.add(mine);
     }
 
+    public List<Mine> getMines() {
+        return Collections.unmodifiableList(this.mines);
+    }
 }

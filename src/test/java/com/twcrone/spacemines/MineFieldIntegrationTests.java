@@ -35,4 +35,11 @@ public class MineFieldIntegrationTests {
 
 	}
 
+	@Test
+	public void getTestMineFieldByUuid() {
+		Optional<MineField> found = repository.findById("TEST");
+
+		assert found.isPresent();
+		assert found.get().getMines().size() == 1;
+	}
 }
