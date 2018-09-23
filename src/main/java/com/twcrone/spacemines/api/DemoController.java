@@ -1,5 +1,7 @@
-package com.twcrone.spacemines;
+package com.twcrone.spacemines.api;
 
+import com.twcrone.spacemines.player.Player;
+import com.twcrone.spacemines.player.PlayerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;

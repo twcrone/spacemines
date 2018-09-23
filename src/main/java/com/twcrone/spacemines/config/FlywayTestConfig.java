@@ -1,4 +1,4 @@
-package com.twcrone.spacemines;
+package com.twcrone.spacemines.config;
 
 import org.flywaydb.core.Flyway;
 import org.springframework.boot.autoconfigure.flyway.FlywayMigrationStrategy;

@@ -1,4 +1,4 @@
-package com.twcrone.spacemines;
+package com.twcrone.spacemines.player;
 
 import org.hibernate.annotations.GenericGenerator;
 

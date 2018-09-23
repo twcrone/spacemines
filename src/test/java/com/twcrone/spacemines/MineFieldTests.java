@@ -1,5 +1,6 @@
 package com.twcrone.spacemines;
 
+import com.twcrone.spacemines.mine.MineField;
 import org.junit.Test;
 
 public class MineFieldTests {
