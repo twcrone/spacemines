@@ -1,6 +1,5 @@
 CREATE TABLE player (
-  uuid VARCHAR(255),
+  uuid VARCHAR(255) PRIMARY KEY ,
   username VARCHAR(255),
-  email VARCHAR(255),
-  PRIMARY KEY(uuid)
+  email VARCHAR(255)
 );
