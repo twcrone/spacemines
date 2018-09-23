@@ -3,12 +3,14 @@ package com.twcrone.spacemines.api;
 import com.twcrone.spacemines.game.GameEntity;
 import com.twcrone.spacemines.game.GameRepository;
 import com.twcrone.spacemines.mine.MineField;
+import com.twcrone.spacemines.mine.MineFieldRepository;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Optional;
+import java.util.function.Function;
 import java.util.stream.Collectors;
 
 @RestController
@@ -16,8 +18,12 @@ public class GameController {
 
     private GameRepository repository;
 
-    public GameController(GameRepository gameRepository) {
+    private MineFieldRepository mineFieldRepository;
+
+    public GameController(GameRepository gameRepository,
+                          MineFieldRepository mineFieldRepository) {
         this.repository = gameRepository;
+        this.mineFieldRepository = mineFieldRepository;
     }
 
     @GetMapping(value = "/game/{uuid}", produces = MediaType.APPLICATION_JSON_VALUE)
@@ -33,9 +39,11 @@ public class GameController {
             produces = MediaType.APPLICATION_JSON_VALUE)
     ResponseEntity<Game> createGame(@RequestBody CreateGameRequest request) {
 
-        GameEntity game = new GameEntity(new MineField());
+        Optional<MineField> results = mineFieldRepository.findById(request.getMineFieldUuid());
+        GameEntity gameEntity = results.map(GameEntity::new)
+                .orElseThrow(() -> new IllegalArgumentException("Not a valid minefield"));
 
-        return new ResponseEntity<>(from(game), HttpStatus.CREATED);
+        return new ResponseEntity<>(from(gameEntity), HttpStatus.CREATED);
     }
 
 

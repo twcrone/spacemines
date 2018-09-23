@@ -26,6 +26,13 @@ public class GameEntity {
 
     public GameEntity(MineField mineField) {
         this.mineField = mineField;
+        for(int x = 0; x < mineField.getxLength(); x++) {
+            for(int y = 0; y < mineField.getyLength(); y++) {
+                for(int z = 0; z < mineField.getzLength(); z++) {
+                    this.spheres.add(new GameSphereEntity(x, y, z));
+                }
+            }
+        }
     }
 
     public String getUuid() {
@@ -38,11 +45,6 @@ public class GameEntity {
 
     @Transient
     public int getSphereCount() {
-        if(spheres.size() > 0) {
-            return spheres.size();
-        }
-        else {
-            return mineField.getxLength() * mineField.getyLength() * mineField.getzLength();
-        }
+        return spheres.size();
     }
 }
