@@ -1,5 +1,6 @@
 package com.twcrone.spacemines.game;
 
+import com.twcrone.spacemines.mine.MineField;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
@@ -18,4 +19,21 @@ public class Game {
     @JoinColumn(name = "game_uuid")
     private final List<GameSphere> mineSpheres = new ArrayList<>();
 
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "mine_field_uuid")
+    private final MineField mineField;
+
+    public Game(MineField mineField) {
+        this.mineField = mineField;
+    }
+
+    @Transient
+    public int getSphereCount() {
+        if(mineSpheres.size() > 0) {
+            return mineSpheres.size();
+        }
+        else {
+            return mineField.getxLength() * mineField.getyLength() * mineField.getzLength();
+        }
+    }
 }
