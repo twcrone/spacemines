@@ -2,9 +2,9 @@ package com.twcrone.spacemines.api;
 
 public class CreateGameRequest {
 
-    private final String mineFieldUuid;
+    private String mineFieldUuid;
 
-    public CreateGameRequest(String mineFieldUuid) {
+    public void setMineFieldUuid(String mineFieldUuid) {
         this.mineFieldUuid = mineFieldUuid;
     }
 
