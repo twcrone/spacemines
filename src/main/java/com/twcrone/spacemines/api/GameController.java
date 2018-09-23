@@ -2,6 +2,7 @@ package com.twcrone.spacemines.api;
 
 import com.twcrone.spacemines.game.GameEntity;
 import com.twcrone.spacemines.game.GameRepository;
+import com.twcrone.spacemines.mine.MineField;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -32,7 +33,9 @@ public class GameController {
             produces = MediaType.APPLICATION_JSON_VALUE)
     ResponseEntity<Game> createGame(@RequestBody CreateGameRequest request) {
 
-        return new ResponseEntity<>(new Game(), HttpStatus.CREATED);
+        GameEntity game = new GameEntity(new MineField());
+
+        return new ResponseEntity<>(from(game), HttpStatus.CREATED);
     }
 
 

@@ -8,7 +8,7 @@ public class GameTests {
 	@Test
 	public void createAGameFromMineField() {
 
-		MineField mineField = new MineField(3, 3, 3);
+		MineField mineField = new MineField();
 		GameEntity game = new GameEntity(mineField);
 
 		assert game.getSphereCount() == 27;
