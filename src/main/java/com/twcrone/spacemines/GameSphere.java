@@ -1,4 +1,4 @@
-package com.example.spacemines;
+package com.twcrone.spacemines;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;

@@ -1,4 +1,4 @@
-package com.example.spacemines;
+package com.twcrone.spacemines;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -7,7 +7,6 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.TestPropertySource;
 import org.springframework.test.context.junit4.SpringRunner;
 
-import javax.swing.text.html.Option;
 import java.util.Optional;
 
 @RunWith(SpringRunner.class)
