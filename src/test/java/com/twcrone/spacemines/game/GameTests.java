@@ -9,7 +9,7 @@ public class GameTests {
 	public void createAGameFromMineField() {
 
 		MineField mineField = new MineField(3, 3, 3);
-		Game game = new Game(mineField);
+		GameEntity game = new GameEntity(mineField);
 
 		assert game.getSphereCount() == 27;
 	}

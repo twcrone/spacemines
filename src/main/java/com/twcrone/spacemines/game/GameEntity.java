@@ -8,7 +8,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-public class Game {
+@Table(name = "game")
+public class GameEntity {
 
     @Id
     @GeneratedValue(generator = "system-uuid")
@@ -17,20 +18,28 @@ public class Game {
 
     @OneToMany(fetch = FetchType.EAGER, orphanRemoval = true)
     @JoinColumn(name = "game_uuid")
-    private final List<GameSphere> mineSpheres = new ArrayList<>();
+    private final List<GameSphereEntity> spheres = new ArrayList<>();
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "mine_field_uuid")
     private final MineField mineField;
 
-    public Game(MineField mineField) {
+    public GameEntity(MineField mineField) {
         this.mineField = mineField;
+    }
+
+    public String getUuid() {
+        return uuid;
+    }
+
+    public List<GameSphereEntity> getSpheres() {
+        return spheres;
     }
 
     @Transient
     public int getSphereCount() {
-        if(mineSpheres.size() > 0) {
-            return mineSpheres.size();
+        if(spheres.size() > 0) {
+            return spheres.size();
         }
         else {
             return mineField.getxLength() * mineField.getyLength() * mineField.getzLength();
