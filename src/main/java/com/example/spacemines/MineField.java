@@ -2,9 +2,8 @@ package com.example.spacemines;
 
 import org.hibernate.annotations.GenericGenerator;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.util.Set;
 
 @Entity
 public class MineField {
@@ -14,7 +13,7 @@ public class MineField {
     @GenericGenerator(name = "system-uuid", strategy = "uuid2")
     private String uuid;
 
-    private String definition;
-
+    @OneToMany
+    private Set<Mine> mines;
 
 }
