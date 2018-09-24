@@ -1,8 +1,11 @@
 package com.twcrone.spacemines.api;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
+
 import java.util.ArrayList;
 import java.util.List;
 
+@JsonInclude(JsonInclude.Include.NON_NULL)
 public class Game {
     private String uuid;
     private List<GameSphere> spheres = new ArrayList<>();
