@@ -22,7 +22,9 @@ public class Game {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "mine_field_uuid")
-    private final MineField mineField;
+    private MineField mineField;
+
+    private Game() {}
 
     public Game(MineField mineField) {
         this.mineField = mineField;
