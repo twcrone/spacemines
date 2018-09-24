@@ -1,8 +1,5 @@
-package com.twcrone.spacemines;
+package com.twcrone.spacemines.mine;
 
-import com.twcrone.spacemines.mine.Mine;
-import com.twcrone.spacemines.mine.MineField;
-import com.twcrone.spacemines.mine.MineFieldRepository;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
