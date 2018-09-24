@@ -16,11 +16,6 @@ public class PlayerController {
     @Autowired
     PlayerRepository repository;
 
-    @GetMapping(value = "/")
-    String home() {
-        return "Hello World";
-    }
-
     @GetMapping(value = "/players", produces = MediaType.APPLICATION_JSON_VALUE)
     ResponseEntity<Iterable<Player>> getPlayers() {
 

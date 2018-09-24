@@ -9,8 +9,11 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 @RestController
 public class GameController {
@@ -23,6 +26,17 @@ public class GameController {
                           MineFieldRepository mineFieldRepository) {
         this.repository = gameRepository;
         this.mineFieldRepository = mineFieldRepository;
+    }
+
+    @GetMapping(value = "/", produces = MediaType.APPLICATION_JSON_VALUE)
+    ResponseEntity<List<String>> getAllGameUuids() {
+
+        Iterable<Game> results = repository.findAll();
+        List<String> uuids = new ArrayList<>();
+
+        results.forEach(game -> uuids.add(game.getUuid()));
+
+        return new ResponseEntity<>(uuids, HttpStatus.OK);
     }
 
     @GetMapping(value = "/game/{uuid}", produces = MediaType.APPLICATION_JSON_VALUE)
