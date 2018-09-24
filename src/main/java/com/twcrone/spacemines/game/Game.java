@@ -16,7 +16,7 @@ public class Game {
     @GenericGenerator(name = "system-uuid", strategy = "uuid2")
     private String uuid;
 
-    @OneToMany(fetch = FetchType.EAGER, orphanRemoval = true)
+    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL, orphanRemoval = true)
     @JoinColumn(name = "game_uuid")
     private final List<GameSphere> spheres = new ArrayList<>();
 

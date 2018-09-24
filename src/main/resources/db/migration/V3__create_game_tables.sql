@@ -4,7 +4,7 @@ CREATE TABLE game (
 );
 
 CREATE TABLE game_sphere (
-  id BIGINT PRIMARY KEY,
+  id BIGSERIAL PRIMARY KEY,
   x INT,
   y INT,
   z INT,

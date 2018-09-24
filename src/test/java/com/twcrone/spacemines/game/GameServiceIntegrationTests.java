@@ -28,5 +28,9 @@ public class GameServiceIntegrationTests {
 		Mine mine = new Mine(1, 1, 1);
 		mineField.addMine(mine);
 		mineFieldRepository.save(mineField);
+
+		Game game = service.create(mineField.getUuid());
+
+		assert game != null;
 	}
 }
