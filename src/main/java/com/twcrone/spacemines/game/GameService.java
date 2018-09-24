@@ -5,6 +5,9 @@ import com.twcrone.spacemines.mine.MineFieldRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import javax.persistence.EntityNotFoundException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -20,12 +23,24 @@ public class GameService {
     }
 
     @Transactional
-    Game create(String mineFieldUuid) {
+    public Game create(String mineFieldUuid) {
         Optional<MineField> results = mineFieldRepository.findById(mineFieldUuid);
         MineField mineField = results.orElseThrow(() -> new IllegalArgumentException("Invalid mine field specified"));
         mineField.getMines();
         Game game = new Game(mineField);
         gameRepository.save(game);
         return game;
+    }
+
+    public Game get(String uuid) {
+        return gameRepository.findById(uuid)
+                .orElseThrow(() -> new EntityNotFoundException("Game not found with that UUID"));
+    }
+
+    public List<String> listUuids() {
+        Iterable<Game> found = gameRepository.findAll();
+        List<String> uuids = new ArrayList<>();
+        found.forEach(game -> uuids.add(game.getUuid()));
+        return uuids;
     }
 }
