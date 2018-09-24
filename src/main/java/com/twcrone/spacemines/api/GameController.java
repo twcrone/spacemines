@@ -2,7 +2,7 @@ package com.twcrone.spacemines.api;
 
 import com.twcrone.spacemines.game.GameEntity;
 import com.twcrone.spacemines.game.GameRepository;
-import com.twcrone.spacemines.mine.MineField;
+import com.twcrone.spacemines.mine.MineFieldEntity;
 import com.twcrone.spacemines.mine.MineFieldRepository;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -38,7 +38,7 @@ public class GameController {
             produces = MediaType.APPLICATION_JSON_VALUE)
     ResponseEntity<Game> createGame(@RequestBody CreateGameRequest request) {
 
-        Optional<MineField> results = mineFieldRepository.findById(request.getMineFieldUuid());
+        Optional<MineFieldEntity> results = mineFieldRepository.findById(request.getMineFieldUuid());
         GameEntity gameEntity = results.map(GameEntity::new)
                 .orElseThrow(() -> new IllegalArgumentException("Not a valid minefield"));
 

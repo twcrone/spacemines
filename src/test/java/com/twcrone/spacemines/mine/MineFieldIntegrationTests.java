@@ -20,13 +20,13 @@ public class MineFieldIntegrationTests {
 
 	@Test
 	public void getMineFieldByUuid() {
-		MineField mineField = new MineField();
-		Mine mine = new Mine(0, 0, 0);
+		MineFieldEntity mineField = new MineFieldEntity();
+		MineEntity mine = new MineEntity(0, 0, 0);
 		mineField.addMine(mine);
 
 		repository.save(mineField);
 
-		Optional<MineField> found = repository.findById(mineField.getUuid());
+		Optional<MineFieldEntity> found = repository.findById(mineField.getUuid());
 
 		assert found.isPresent();
 
@@ -34,7 +34,7 @@ public class MineFieldIntegrationTests {
 
 	@Test
 	public void getTestMineFieldByUuid() {
-		Optional<MineField> found = repository.findById("TEST");
+		Optional<MineFieldEntity> found = repository.findById("TEST");
 
 		assert found.isPresent();
 		assert found.get().getMines().size() == 1;

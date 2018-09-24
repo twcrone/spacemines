@@ -5,9 +5,11 @@ import org.hibernate.annotations.GenericGenerator;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.Table;
 
 @Entity
-public class Mine {
+@Table(name = "mine")
+public class MineEntity {
 
     @Id
     @GeneratedValue(generator = "system-uuid")
@@ -18,9 +20,9 @@ public class Mine {
     private Integer y;
     private Integer z;
 
-    private Mine() {}
+    private MineEntity() {}
 
-    public Mine(int x, int y, int z) {
+    public MineEntity(int x, int y, int z) {
         this.x = x;
         this.y = y;
         this.z = z;

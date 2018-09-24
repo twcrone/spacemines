@@ -1,6 +1,6 @@
 package com.twcrone.spacemines.game;
 
-import com.twcrone.spacemines.mine.MineField;
+import com.twcrone.spacemines.mine.MineFieldEntity;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
@@ -22,9 +22,9 @@ public class GameEntity {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "mine_field_uuid")
-    private final MineField mineField;
+    private final MineFieldEntity mineField;
 
-    public GameEntity(MineField mineField) {
+    public GameEntity(MineFieldEntity mineField) {
         this.mineField = mineField;
         for(int x = 0; x < mineField.getxLength(); x++) {
             for(int y = 0; y < mineField.getyLength(); y++) {
