@@ -20,7 +20,7 @@ public class GameSphere {
 
     private GameSphere() {}
 
-    public GameSphere(Integer x, Integer y, Integer z) {
+    public GameSphere(int x, int y, int z) {
         this.x = x;
         this.y = y;
         this.z = z;
