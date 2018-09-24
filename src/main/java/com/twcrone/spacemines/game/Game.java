@@ -1,6 +1,6 @@
 package com.twcrone.spacemines.game;
 
-import com.twcrone.spacemines.mine.MineFieldEntity;
+import com.twcrone.spacemines.mine.MineField;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
@@ -9,7 +9,7 @@ import java.util.List;
 
 @Entity
 @Table(name = "game")
-public class GameEntity {
+public class Game {
 
     @Id
     @GeneratedValue(generator = "system-uuid")
@@ -18,18 +18,18 @@ public class GameEntity {
 
     @OneToMany(fetch = FetchType.EAGER, orphanRemoval = true)
     @JoinColumn(name = "game_uuid")
-    private final List<GameSphereEntity> spheres = new ArrayList<>();
+    private final List<GameSphere> spheres = new ArrayList<>();
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "mine_field_uuid")
-    private final MineFieldEntity mineField;
+    private final MineField mineField;
 
-    public GameEntity(MineFieldEntity mineField) {
+    public Game(MineField mineField) {
         this.mineField = mineField;
         for(int x = 0; x < mineField.getxLength(); x++) {
             for(int y = 0; y < mineField.getyLength(); y++) {
                 for(int z = 0; z < mineField.getzLength(); z++) {
-                    this.spheres.add(new GameSphereEntity(x, y, z));
+                    this.spheres.add(new GameSphere(x, y, z));
                 }
             }
         }
@@ -39,7 +39,7 @@ public class GameEntity {
         return uuid;
     }
 
-    public List<GameSphereEntity> getSpheres() {
+    public List<GameSphere> getSpheres() {
         return spheres;
     }
 

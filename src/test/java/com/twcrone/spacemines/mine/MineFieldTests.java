@@ -7,7 +7,7 @@ public class MineFieldTests {
 	@Test
 	public void createMineField() {
 
-		MineFieldEntity mineField = new MineFieldEntity(3, 3, 3);
+		MineField mineField = new MineField(3, 3, 3);
 
 		assert mineField.getxLength() == 3;
 

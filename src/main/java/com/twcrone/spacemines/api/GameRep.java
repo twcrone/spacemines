@@ -6,9 +6,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
-public class Game {
+public class GameRep {
     private String uuid;
-    private List<GameSphere> spheres = new ArrayList<>();
+    private List<GameSphereRep> spheres = new ArrayList<>();
 
     public String getUuid() {
         return uuid;
@@ -18,11 +18,11 @@ public class Game {
         this.uuid = uuid;
     }
 
-    public List<GameSphere> getSpheres() {
+    public List<GameSphereRep> getSpheres() {
         return spheres;
     }
 
-    public void setSpheres(List<GameSphere> spheres) {
+    public void setSpheres(List<GameSphereRep> spheres) {
         this.spheres = spheres;
     }
 }

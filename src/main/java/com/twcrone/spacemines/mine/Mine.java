@@ -9,7 +9,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "mine")
-public class MineEntity {
+public class Mine {
 
     @Id
     @GeneratedValue(generator = "system-uuid")
@@ -20,9 +20,9 @@ public class MineEntity {
     private Integer y;
     private Integer z;
 
-    private MineEntity() {}
+    private Mine() {}
 
-    public MineEntity(int x, int y, int z) {
+    public Mine(int x, int y, int z) {
         this.x = x;
         this.y = y;
         this.z = z;

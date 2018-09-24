@@ -3,7 +3,7 @@ package com.twcrone.spacemines.api;
 import com.fasterxml.jackson.annotation.JsonInclude;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
-public class GameSphere {
+public class GameSphereRep {
 
     private final Integer x;
     private final Integer y;
@@ -11,7 +11,7 @@ public class GameSphere {
 
     private final Integer radiation;
 
-    public GameSphere(int x, int y, int z, int radiation) {
+    public GameSphereRep(int x, int y, int z, int radiation) {
         this.x = x;
         this.y = y;
         this.z = z;

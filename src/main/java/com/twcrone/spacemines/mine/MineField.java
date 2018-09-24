@@ -9,7 +9,7 @@ import java.util.List;
 
 @Entity
 @Table(name = "mine_field")
-public class MineFieldEntity {
+public class MineField {
 
     public final static int MINIMUM_DIMENSION = 3;
 
@@ -24,15 +24,15 @@ public class MineFieldEntity {
 
     @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL, orphanRemoval = true)
     @JoinColumn(name = "mine_field_uuid")
-    private final List<MineEntity> mines = new ArrayList<>();
+    private final List<Mine> mines = new ArrayList<>();
 
-    public MineFieldEntity() {
+    public MineField() {
         xLength = MINIMUM_DIMENSION;
         yLength = MINIMUM_DIMENSION;
         zLength = MINIMUM_DIMENSION;
     }
 
-    public MineFieldEntity(int xLength, int yLength, int zLength) {
+    public MineField(int xLength, int yLength, int zLength) {
         this.xLength = xLength;
         this.yLength = yLength;
         this.zLength = zLength;
@@ -54,11 +54,11 @@ public class MineFieldEntity {
         return zLength;
     }
 
-    public void addMine(MineEntity mine) {
+    public void addMine(Mine mine) {
         mines.add(mine);
     }
 
-    public List<MineEntity> getMines() {
+    public List<Mine> getMines() {
         return Collections.unmodifiableList(this.mines);
     }
 }

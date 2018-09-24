@@ -1,6 +1,6 @@
 package com.twcrone.spacemines.game;
 
-import com.twcrone.spacemines.mine.MineFieldEntity;
+import com.twcrone.spacemines.mine.MineField;
 import org.junit.Test;
 
 public class GameTests {
@@ -8,8 +8,8 @@ public class GameTests {
 	@Test
 	public void createAGameFromMineField() {
 
-		MineFieldEntity mineField = new MineFieldEntity();
-		GameEntity game = new GameEntity(mineField);
+		MineField mineField = new MineField();
+		Game game = new Game(mineField);
 
 		assert game.getSphereCount() == 27;
 	}

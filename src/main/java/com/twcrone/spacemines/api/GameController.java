@@ -1,8 +1,8 @@
 package com.twcrone.spacemines.api;
 
-import com.twcrone.spacemines.game.GameEntity;
+import com.twcrone.spacemines.game.Game;
 import com.twcrone.spacemines.game.GameRepository;
-import com.twcrone.spacemines.mine.MineFieldEntity;
+import com.twcrone.spacemines.mine.MineField;
 import com.twcrone.spacemines.mine.MineFieldRepository;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -26,9 +26,9 @@ public class GameController {
     }
 
     @GetMapping(value = "/game/{uuid}", produces = MediaType.APPLICATION_JSON_VALUE)
-    ResponseEntity<Game> getGame(@PathVariable String uuid) {
+    ResponseEntity<GameRep> getGame(@PathVariable String uuid) {
 
-        Optional<GameEntity> results = repository.findById(uuid);
+        Optional<Game> results = repository.findById(uuid);
 
         return results.map(gameEntity -> new ResponseEntity<>(from(gameEntity), HttpStatus.OK))
                 .orElse(new ResponseEntity<>(HttpStatus.NOT_FOUND));
@@ -36,23 +36,23 @@ public class GameController {
 
     @PostMapping(value = "/game", consumes = MediaType.APPLICATION_JSON_VALUE,
             produces = MediaType.APPLICATION_JSON_VALUE)
-    ResponseEntity<Game> createGame(@RequestBody CreateGameRequest request) {
+    ResponseEntity<GameRep> createGame(@RequestBody CreateGameRequest request) {
 
-        Optional<MineFieldEntity> results = mineFieldRepository.findById(request.getMineFieldUuid());
-        GameEntity gameEntity = results.map(GameEntity::new)
+        Optional<MineField> results = mineFieldRepository.findById(request.getMineFieldUuid());
+        Game gameEntity = results.map(Game::new)
                 .orElseThrow(() -> new IllegalArgumentException("Not a valid minefield"));
 
         return new ResponseEntity<>(from(gameEntity), HttpStatus.CREATED);
     }
 
 
-    private static Game from(GameEntity entity) {
-        Game game = new Game();
+    private static GameRep from(Game entity) {
+        GameRep game = new GameRep();
 
         game.setUuid(entity.getUuid());
 
         game.setSpheres(entity.getSpheres().stream()
-                    .map(s -> new GameSphere(s.getX(), s.getY(), s.getZ(), s.getRadiation()))
+                    .map(s -> new GameSphereRep(s.getX(), s.getY(), s.getZ(), s.getRadiation()))
                     .collect(Collectors.toList()));
 
         return game;
