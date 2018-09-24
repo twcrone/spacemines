@@ -14,9 +14,11 @@ public class GameSphere {
 
     private Integer radiation = UNKNOWN;
 
-    private Integer x;
-    private Integer y;
-    private Integer z;
+    private int x;
+    private int y;
+    private int z;
+
+    private GameSphere() {}
 
     public GameSphere(Integer x, Integer y, Integer z) {
         this.x = x;
@@ -24,19 +26,19 @@ public class GameSphere {
         this.z = z;
     }
 
-    public Integer getRadiation() {
+    public int getRadiation() {
         return radiation;
     }
 
-    public Integer getX() {
+    public int getX() {
         return x;
     }
 
-    public Integer getY() {
+    public int getY() {
         return y;
     }
 
-    public Integer getZ() {
+    public int getZ() {
         return z;
     }
 }
