@@ -7,7 +7,7 @@ import org.springframework.transaction.annotation.Transactional
 import javax.persistence.EntityNotFoundException
 
 @Service
-class KotlinGameService {
+class GameService {
 
     @Autowired
     lateinit var gameRepository: GameRepository
@@ -29,5 +29,10 @@ class KotlinGameService {
     fun get(uuid: String): Game {
         return gameRepository.findById(uuid)
                 .orElseThrow({ throw EntityNotFoundException("Game not found with that UUID=$uuid") })
+    }
+
+    fun list(): List<String> {
+        val found = gameRepository.findAll()
+        return found.map { it.uuid }
     }
 }

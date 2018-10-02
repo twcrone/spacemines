@@ -1,7 +1,7 @@
 package com.twcrone.spacemines.api
 
 import com.twcrone.spacemines.game.Game
-import com.twcrone.spacemines.game.KotlinGameService
+import com.twcrone.spacemines.game.GameService
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.http.HttpStatus
 import org.springframework.http.MediaType
@@ -10,15 +10,15 @@ import org.springframework.web.bind.annotation.*
 import java.util.stream.Collectors
 
 @RestController
-class KotlinGameController {
+class GameController {
 
     @Autowired
-    lateinit var kotlinGameService: KotlinGameService
+    lateinit var gameService: GameService
 
     @PostMapping("/game", consumes = [MediaType.APPLICATION_JSON_VALUE],
             produces = [MediaType.APPLICATION_JSON_VALUE])
     fun createGame(@RequestBody request: CreateGameRequest): ResponseEntity<GameRep> {
-        val game = kotlinGameService.create(request.mineFieldUuid)
+        val game = gameService.create(request.mineFieldUuid)
 
         return ResponseEntity(from(game), HttpStatus.CREATED)
     }
@@ -26,8 +26,15 @@ class KotlinGameController {
     @GetMapping("/game/{uuid}", produces = [MediaType.APPLICATION_JSON_VALUE])
     fun getGame(@PathVariable uuid: String): ResponseEntity<GameRep> {
 
-        val results = kotlinGameService.get(uuid)
+        val results = gameService.get(uuid)
         return ResponseEntity(from(results), HttpStatus.OK)
+    }
+
+    @GetMapping("/", produces = [MediaType.APPLICATION_JSON_VALUE])
+    fun listGames(): ResponseEntity<List<String>> {
+        val results = gameService.list()
+
+        return ResponseEntity(results, HttpStatus.OK)
     }
 
     private fun from(entity: Game): GameRep {

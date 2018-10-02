@@ -17,7 +17,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 public class GameServiceIntegrationTests {
 
 	@Autowired
-	private KotlinGameService service;
+	private GameService service;
 
 	@Autowired
 	private MineFieldRepository mineFieldRepository;
