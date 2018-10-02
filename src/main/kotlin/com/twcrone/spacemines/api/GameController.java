@@ -32,13 +32,6 @@ public class GameController {
         return new ResponseEntity<>(results, HttpStatus.OK);
     }
 
-    @GetMapping(value = "/game/{uuid}", produces = MediaType.APPLICATION_JSON_VALUE)
-    ResponseEntity<GameRep> getGame(@PathVariable String uuid) {
-
-        Game results = gameService.get(uuid);
-        return new ResponseEntity<>(from(results), HttpStatus.OK);
-    }
-
     @PostMapping(value = "/game", consumes = MediaType.APPLICATION_JSON_VALUE,
             produces = MediaType.APPLICATION_JSON_VALUE)
     ResponseEntity<GameRep> createGame(@RequestBody CreateGameRequest request) {

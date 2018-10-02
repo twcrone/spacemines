@@ -32,11 +32,6 @@ public class GameService {
         return game;
     }
 
-    public Game get(String uuid) {
-        return gameRepository.findById(uuid)
-                .orElseThrow(() -> new EntityNotFoundException("Game not found with that UUID"));
-    }
-
     public List<String> listUuids() {
         Iterable<Game> found = gameRepository.findAll();
         List<String> uuids = new ArrayList<>();
