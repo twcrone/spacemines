@@ -1,7 +1,9 @@
 package com.twcrone.spacemines.game
 
+import com.twcrone.spacemines.mine.MineFieldRepository
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Service
+import org.springframework.transaction.annotation.Transactional
 import javax.persistence.EntityNotFoundException
 
 @Service
@@ -9,6 +11,20 @@ class KotlinGameService {
 
     @Autowired
     lateinit var gameRepository: GameRepository
+
+    @Autowired
+    lateinit var mineFieldRepository: MineFieldRepository
+
+    @Transactional
+    fun create(mineFieldUuid: String): Game {
+        val results = mineFieldRepository.findById(mineFieldUuid)
+        val mineField = results.orElseThrow({
+            throw IllegalArgumentException("Invalid mine field UUI=$mineFieldUuid") })
+        mineField.mines
+        val game = Game(mineField)
+        gameRepository.save(game)
+        return game
+    }
 
     fun get(uuid: String): Game {
         return gameRepository.findById(uuid)
