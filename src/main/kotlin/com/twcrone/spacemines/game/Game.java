@@ -46,9 +46,19 @@ public class Game {
     }
 
     public boolean hasMineAt(int x, int y, int z) {
-        return this.spheres.stream()
-                .anyMatch((sphere) ->
-                        sphere.getX() == x && sphere.getY() == y && sphere.getZ() == z);
+        return this.mineField.getMines().stream()
+                .anyMatch((mine) ->
+                        mine.getX() == x && mine.getY() == y && mine.getZ() == z);
+    }
+
+    public Game reveal(int x, int y, int z) {
+        if(this.hasMineAt(x, y, z)) {
+            this.end();
+        }
+        else {
+            // something else
+        }
+        return this;
     }
 
     @Transient
