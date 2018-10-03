@@ -45,8 +45,23 @@ public class Game {
         return spheres;
     }
 
+    public boolean hasMineAt(int x, int y, int z) {
+        return this.spheres.stream()
+                .anyMatch((sphere) ->
+                        sphere.getX() == x && sphere.getY() == y && sphere.getZ() == z);
+    }
+
     @Transient
     public int getSphereCount() {
         return spheres.size();
+    }
+
+    @Transient
+    public boolean isOver() {
+        return spheres.isEmpty();
+    }
+
+    @Transient void end() {
+        spheres.clear();
     }
 }

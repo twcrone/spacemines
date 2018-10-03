@@ -19,7 +19,7 @@ class GameService {
     fun create(mineFieldUuid: String): Game {
         val results = mineFieldRepository.findById(mineFieldUuid)
         val mineField = results.orElseThrow({
-            throw IllegalArgumentException("Invalid mine field UUI=$mineFieldUuid") })
+            throw IllegalArgumentException("Invalid mine field UUID=$mineFieldUuid") })
         mineField.mines
         val game = Game(mineField)
         gameRepository.save(game)
@@ -34,5 +34,14 @@ class GameService {
     fun list(): List<String> {
         val found = gameRepository.findAll()
         return found.map { it.uuid }
+    }
+
+    fun reveal(game: Game, x: Int, y: Int, z: Int): Game {
+        if(game.hasMineAt(x, y, z)) {
+            game.end()
+            gameRepository.save(game)
+        }
+
+        return game
     }
 }

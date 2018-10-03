@@ -33,4 +33,18 @@ class GameServiceIntegrationTests {
 
         assertEquals(27, game.sphereCount)
 	}
+
+	@Test
+	fun `update a game by selecting a sphere this is a bomb should throw exception and delete game`() {
+		val mineField = MineField();
+		val mine = Mine(1, 1, 1)
+		mineField.addMine(mine)
+		mineFieldRepository.save(mineField)
+
+		val game = service.create(mineField.uuid)
+		val updated = service.reveal(game, 1, 1, 1)
+
+		assertTrue(updated.isOver)
+		assertTrue(updated.spheres.isEmpty())
+	}
 }
