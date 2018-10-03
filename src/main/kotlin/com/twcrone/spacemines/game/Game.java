@@ -56,12 +56,11 @@ public class Game {
         return spheres.size();
     }
 
-    @Transient
     public boolean isOver() {
         return spheres.isEmpty();
     }
 
-    @Transient void end() {
+    public void end() {
         spheres.clear();
     }
 }
