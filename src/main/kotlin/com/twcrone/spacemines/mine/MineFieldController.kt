@@ -10,7 +10,7 @@ class MineFieldController {
 
     @GetMapping("/", produces = [MediaType.APPLICATION_JSON_VALUE])
     fun getGame(): ResponseEntity<List<MineFieldRep>> {
-        val results = listOf(MineFieldRep("FIRST", 3,3,3,1,1, "Easy"))
+        val results = listOf(MineFieldRep("TEST", 3,3,3,1,1, "Easy"))
         return ResponseEntity(results, HttpStatus.OK)
     }
 

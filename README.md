@@ -7,7 +7,7 @@ to render various games and make them playable in a web browswer.
 
 http://twcrone.com/space-mines/
 
-The API starting point is to list existing Game UUIDs.
+The API starting point is to list existing Mine Fields.
 
 GET https://spacemines.herokuapp.com
 
@@ -15,6 +15,9 @@ GET https://spacemines.herokuapp.com
 To create a game based on a mine field use 'TEST'.
 
 POST https://spacemines.herokuapp.com/game
+
+* Content-Type=application/json
+* Accept=application/json
 
 ```$javascript
 {
