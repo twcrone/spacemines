@@ -30,13 +30,6 @@ class GameController {
         return ResponseEntity(from(results), HttpStatus.OK)
     }
 
-    @GetMapping("/", produces = [MediaType.APPLICATION_JSON_VALUE])
-    fun listGames(): ResponseEntity<List<String>> {
-        val results = gameService.list()
-
-        return ResponseEntity(results, HttpStatus.OK)
-    }
-
     private fun from(entity: Game): GameRep {
         val game = GameRep()
 
