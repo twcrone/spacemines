@@ -15,12 +15,8 @@ class MonoTest {
 
   @Test
   fun `checked exception mono`() {
-    Mono.error<Exception>(Exception("BLAH"))
+    Mono.error<Exception>(RuntimeException("BLAH"))
         .doOnError{ e -> println("Error: $e") }
-//        .onErrorResume { e ->
-//          println("Handling Error: $e")
-//          return Mono.just("Something")
-//        }
         .log()
         .subscribe(System.out::println)
   }
